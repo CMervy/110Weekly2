@@ -8,28 +8,30 @@ if (document.readyState === 'loading') {
     updateTotal();
 }
 
+
+// Makes all of the buttons work
 function initCart() {
-    // Attach listeners to all remove buttons (including static HTML cart items)
+    // Attach listeners to the remove buttons
     document.querySelectorAll('.cart-items .btn-danger').forEach(btn => {
         btn.addEventListener('click', handleRemove);
     });
 
-    // Attach listeners to all quantity inputs (including static HTML cart items)
+    // Attach listeners to all quantity inputs
     document.querySelectorAll('.cart-items .cart-quantity-input').forEach(input => {
         input.addEventListener('change', handleQuantityChange);
     });
 
-    // Add to cart buttons
+    // Attach listeners to add to cart buttons
     document.querySelectorAll('.shop-item-button').forEach(btn => {
         btn.addEventListener('click', handleAddToCart);
     });
 
-    // Purchase button
+    // Attach listener to purchase button
     const purchaseBtn = document.querySelector('.btn-purchase');
     if (purchaseBtn) purchaseBtn.addEventListener('click', handlePurchase);
 }
 
-// 🧾 Handle purchase button click
+// When purchase button is clicked
 function handlePurchase() {
     alert('Thank you for your purchase!')
     const cartItemsContainer = document.querySelector('.cart-items')
@@ -39,14 +41,14 @@ function handlePurchase() {
     updateTotal()
 }
 
-// ❌ Remove item from cart
+// Remve item from cart
 function handleRemove(e) {
     const button = e.target
     button.closest('.cart-row').remove()
     updateTotal()
 }
 
-// 🔢 Quantity changed
+// Change quantity of item
 function handleQuantityChange(e) {
     const input = e.target
     if (isNaN(input.value) || input.value <= 0) {
@@ -55,7 +57,7 @@ function handleQuantityChange(e) {
     updateTotal()
 }
 
-// ➕ Add to cart button clicked
+// When add to cart button is clicked
 function handleAddToCart(e) {
     const button = e.target
     const product = button.closest('.shop-item')
@@ -67,7 +69,7 @@ function handleAddToCart(e) {
     updateTotal()
 }
 
-// 🧩 Add item into the cart area
+// Adds item to cart by creating a new row, had to look at video
 function insertCartItem(title, price, imageSrc) {
     const cartContainer = document.querySelector('.cart-items')
     const existingTitles = cartContainer.querySelectorAll('.cart-item-title')
@@ -100,7 +102,7 @@ function insertCartItem(title, price, imageSrc) {
     newRow.querySelector('.cart-quantity-input').addEventListener('change', handleQuantityChange)
 }
 
-// 💰 Update total price
+// Update total price in cart, had to look at video
 function updateTotal() {
       var cartItemContainer = document.getElementsByClassName('cart-items')[0]
     var cartRows = cartItemContainer.getElementsByClassName('cart-row')
