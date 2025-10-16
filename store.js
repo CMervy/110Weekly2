@@ -42,15 +42,15 @@ function handlePurchase() {
 }
 
 // Remve item from cart
-function handleRemove(e) {
-    const button = e.target
+function handleRemove(event) {
+    const button = event.target
     button.closest('.cart-row').remove()
     updateTotal()
 }
 
 // Change quantity of item
-function handleQuantityChange(e) {
-    const input = e.target
+function handleQuantityChange(event) {
+    const input = event.target
     if (isNaN(input.value) || input.value <= 0) {
         input.value = 1
     }
@@ -58,8 +58,8 @@ function handleQuantityChange(e) {
 }
 
 // When add to cart button is clicked
-function handleAddToCart(e) {
-    const button = e.target
+function handleAddToCart(event) {
+    const button = event.target
     const product = button.closest('.shop-item')
     const title = product.querySelector('.shop-item-title').innerText
     const price = product.querySelector('.shop-item-price').innerText
@@ -75,8 +75,8 @@ function insertCartItem(title, price, imageSrc) {
     const existingTitles = cartContainer.querySelectorAll('.cart-item-title')
 
     // Avoid duplicates
-    for (let t of existingTitles) {
-        if (t.innerText === title) {
+    for (let i of existingTitles) {
+        if (i.innerText === title) {
             alert('This item is already in the cart!')
             return
         }
